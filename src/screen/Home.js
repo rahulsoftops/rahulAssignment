@@ -41,8 +41,10 @@ openAsstroidId=()=>{
     
     }
 
-    this.setState({thirdStatus:true})
 
+
+    
+this.setState({secondStatus:false})
     this.props.AsteroidIdAction(data)
 
 
@@ -60,9 +62,14 @@ console.log(near_earth_objects)
 
     if(prevProps.astroidIdReducer !== this.props.astroidIdReducer){
 
-        const { near_earth_objects} = this.props.astroidIdReducer
+        const { name,id,nasa_jpl_url} = this.props.astroidIdReducer
         
-        console.warn("heuuuuuuuuu")
+
+        this.setState({id:name,url:nasa_jpl_url,})
+
+console.warn(name)
+
+        console.log("heuuuuuuuuu",this.props.astroidIdReduce)
         
             }
 
@@ -70,10 +77,10 @@ console.log(near_earth_objects)
 
 renderItems=(item,index)=>{
 return <TouchableOpacity onPress={()=>{
-    this.setState({secondStatus:false,id:item.item.id,url:item.item.nasa_jpl_url,booleanData:item.item.is_potentially_hazardous_asteroid,thirdStatus:false})
+    this.setState({secondStatus:false,id:item.item.name,url:item.item.nasa_jpl_url,booleanData:item.item.is_potentially_hazardous_asteroid,thirdStatus:false})
 }} style={{justifyContent:"center",alignItems:"center",backgroundColor:"#fff",padding:10,marginBottom:15,elevation:4}} key={index}>
 <Text style={{fontSize:20}}>{item.item.id}</Text>
-{console.warn("iddd",item.item.is_potentially_hazardous_asteroid)}
+
 </TouchableOpacity>
 }
 
@@ -94,12 +101,10 @@ return <TouchableOpacity onPress={()=>{
 <View>
   {this.state.status ? (<TouchableOpacity onPress={
       
-      ()=>{
+   
         this.openAsstroidId
-        this.setState({thirdStatus:true,
-        id:this.props.randomIdReducer.near_earth_objects.id
-        })
-      }
+       
+    
       
       } style={{backgroundColor:"steelblue",padding:10,justifyContent:"center",alignItems:"center",margin:20,borderRadius:10}}>
       <Text style={{color:"#fff",fontSize:20}}> Submit</Text>
